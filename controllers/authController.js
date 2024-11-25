@@ -3,6 +3,7 @@ const Role = require('../models/Role.js');
 const bcrypt = require('bcrypt');
 const tokenService = require('../services/tokenService.js');
 const logger = require('../utils/logger.js');
+const { z } = require('zod');
 const { registerSchema, loginSchema, refreshTokenSchema } = require('../utils/validators.js');
 
 const authController = {

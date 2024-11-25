@@ -1,7 +1,10 @@
 // routes/auth.js
 const express = require('express');
 const router = express.Router();
-const authController = require('../controllers/authController');
+const authController = require('../controllers/authController.js');
+const validate = require('../middleware/validate.js');
+const { registerSchema, loginSchema, refreshTokenSchema } = require('../utils/validators');
+
 
 // Routes
 /**

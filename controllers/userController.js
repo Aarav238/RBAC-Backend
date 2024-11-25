@@ -2,6 +2,7 @@ const User = require('../models/User.js');
 const Role = require('../models/Role.js');
 const bcrypt = require('bcrypt');
 const logger = require('../utils/logger.js');
+const { z } = require('zod');
 const { updateUserSchema } = require('../utils/validators.js');
 
 const userController = {
@@ -85,21 +86,25 @@ const userController = {
   deleteUser: async (req, res, next) => {
     try {
       const userId = req.params.id;
-
+  
       // Only admin can delete users
       if (req.user.role !== 'Admin') {
         return res.status(403).json({ msg: 'Access denied' });
       }
-
+  
+      // Find the user by ID
       const user = await User.findById(userId);
       if (!user) {
         return res.status(404).json({ msg: 'User not found' });
       }
-
-      await user.remove();
-
+  
+      // Delete the user
+      await User.deleteOne({ _id: userId });
+  
+      // Log the deletion
       logger.info(`User deleted: ${user.email}`);
-
+  
+      // Send success response
       res.json({ msg: 'User deleted successfully' });
     } catch (err) {
       next(err);
