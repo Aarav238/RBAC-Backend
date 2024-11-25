@@ -10,7 +10,7 @@ router.get('/admin', authMiddleware(['Admin']), (req, res) => {
 
 // Accessible by Admin and Moderator
 router.get('/moderator', authMiddleware(['Admin', 'Moderator']), (req, res) => {
-    res.json({ msg: 'Welcome Moderator! You have access to this route.' });
+    res.json({ msg: `Welcome Moderator! You have access to this route. Your role is ${req.user.role}.` });
 });
 
 // Accessible by all authenticated users
