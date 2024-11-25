@@ -1,17 +1,8 @@
-// controllers/userController.js
-const User = require('../models/User');
-const Role = require('../models/Role');
+const User = require('../models/User.js');
+const Role = require('../models/Role.js');
 const bcrypt = require('bcrypt');
-const { z } = require('zod');
-const logger = require('../utils/logger');
-
-// Zod Schemas
-const updateUserSchema = z.object({
-  username: z.string().min(3).max(30).optional(),
-  email: z.string().email().optional(),
-  password: z.string().min(6).optional(),
-  role: z.enum(['Admin', 'Moderator', 'User']).optional(),
-});
+const logger = require('../utils/logger.js');
+const { updateUserSchema } = require('../utils/validators.js');
 
 const userController = {
   // Get all users (Admin only)
@@ -48,6 +39,7 @@ const userController = {
   // Update user (Admin and self)
   updateUser: async (req, res, next) => {
     try {
+      // Validate request data using Zod schema from utils/validators.js
       const parsedData = updateUserSchema.parse(req.body);
       const userId = req.params.id;
 

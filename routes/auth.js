@@ -9,21 +9,21 @@ const authController = require('../controllers/authController');
  * @desc    Register a new user
  * @access  Public
  */
-router.post('/register', authController.register);
+router.post('/register', validate(registerSchema), authController.register);
 
 /**
  * @route   POST /api/auth/login
  * @desc    Login user and get tokens
  * @access  Public
  */
-router.post('/login', authController.login);
+router.post('/login', validate(loginSchema), authController.login);
 
 /**
  * @route   POST /api/auth/refresh-token
  * @desc    Refresh access token
  * @access  Public
  */
-router.post('/refresh-token', authController.refreshAccessToken);
+router.post('/refresh-token', validate(refreshTokenSchema), authController.refreshAccessToken);
 
 /**
  * @route   POST /api/auth/logout
@@ -31,5 +31,6 @@ router.post('/refresh-token', authController.refreshAccessToken);
  * @access  Private
  */
 router.post('/logout', authController.logout);
+
 
 module.exports = router;

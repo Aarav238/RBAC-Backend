@@ -1,32 +1,15 @@
-const User = require('../models/User');
-const Role = require('../models/Role');
+const User = require('../models/User.js');
+const Role = require('../models/Role.js');
 const bcrypt = require('bcrypt');
-const tokenService = require('../services/tokenService');
-const { z } = require('zod');
-const logger = require('../utils/logger');
-
-// Zod Schemas
-const registerSchema = z.object({
-  username: z.string().min(3).max(30),
-  email: z.string().email(),
-  password: z.string().min(6),
-  role: z.enum(['Admin', 'Moderator', 'User']).optional(),
-});
-
-const loginSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(6),
-  twoFactorToken: z.string().length(6).optional(),
-});
-
-const refreshTokenSchema = z.object({
-  refreshToken: z.string(),
-});
+const tokenService = require('../services/tokenService.js');
+const logger = require('../utils/logger.js');
+const { registerSchema, loginSchema, refreshTokenSchema } = require('../utils/validators.js');
 
 const authController = {
   // Register a new user
   register: async (req, res, next) => {
     try {
+      // Validate request data using Zod schema from utils/validators.js
       const parsedData = registerSchema.parse(req.body);
       const { username, email, password, role } = parsedData;
 
@@ -70,6 +53,7 @@ const authController = {
   // Login user
   login: async (req, res, next) => {
     try {
+      // Validate request data using Zod schema from utils/validators.js
       const parsedData = loginSchema.parse(req.body);
       const { email, password, twoFactorToken } = parsedData;
 
@@ -85,7 +69,7 @@ const authController = {
         return res.status(400).json({ msg: 'Invalid Credentials' });
       }
 
-      // If 2FA is enabled, verify token
+      // If 2FA is enabled, verify token (implementation needed)
       if (user.twoFactorEnabled) {
         if (!twoFactorToken) {
           return res.status(400).json({ msg: '2FA token is required.' });
@@ -124,6 +108,7 @@ const authController = {
   // Refresh access token
   refreshAccessToken: async (req, res, next) => {
     try {
+      // Validate request data using Zod schema from utils/validators.js
       const parsedData = refreshTokenSchema.parse(req.body);
       const { refreshToken } = parsedData;
 
