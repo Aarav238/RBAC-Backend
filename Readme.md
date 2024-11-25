@@ -126,7 +126,7 @@ Ensure you have the following installed on your machine:
 
 ```bash
 
-git clone https://github.com/<yourusername></yourusername>/SecureAccess.git
+git clone https://github.com/<yourusername>/SecureAccess.git
 cd SecureAccess
 ```
 
