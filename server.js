@@ -57,7 +57,7 @@ app.use(errorHandler);
 
 // Default Route
 app.get('/', (req, res) => {
-  res.send('Authentication and RBAC System is Running');
+  res.send('SecureAccess is Running');
 });
 
 // Start Server
