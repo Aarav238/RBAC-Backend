@@ -1,12 +1,17 @@
 const express = require('express');
+const connectDB = require('./config/db.js');
 const dotenv = require('dotenv');
 
 dotenv.config();
+
+//connect To mongoDB
+connectDB();
 
 const app = express();
 
 //middleware to parse JSON
 app.use(express.json());
+
 
 
 
