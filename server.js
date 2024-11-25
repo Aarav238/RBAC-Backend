@@ -2,7 +2,7 @@ const express = require('express');
 const connectDB = require('./config/db.js');
 const dotenv = require('dotenv');
 const auth = require('./routes/auth.js')
-const protected = require('./routes/protected.js')
+const protected = require('./routes/users.js')
 
 dotenv.config();
 
