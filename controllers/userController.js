@@ -1,5 +1,5 @@
-const User = require('../models/User.js');
-const Role = require('../models/Role.js');
+const User = require("../Models/User.js")
+const Role = require('../Models/Role.js');
 const bcrypt = require('bcrypt');
 const logger = require('../utils/logger.js');
 const { z } = require('zod');
