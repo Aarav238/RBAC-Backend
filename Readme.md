@@ -1,7 +1,5 @@
 # SecureAccess: Authentication & RBAC System
 
-![SecureAccess Logo](https://via.placeholder.com/150)
-
 ## Table of Contents
 
 - [SecureAccess: Authentication \& RBAC System](#secureaccess-authentication--rbac-system)
