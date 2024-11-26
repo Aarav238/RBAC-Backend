@@ -1,14 +1,14 @@
 // server.js
 const express = require('express');
-const connectDB = require('./config/db');
+const connectDB = require('./config/db.js');
 const dotenv = require('dotenv');
-const errorHandler = require('./middleware/errorHandler');
+const errorHandler = require('./middleware/errorHandler.js');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const mongoSanitize = require('express-mongo-sanitize');
 const cors = require('cors');
 const morgan = require('morgan');
-const logger = require('./utils/logger');
+const logger = require('./utils/logger.js');
 
 // Load environment variables
 dotenv.config();
